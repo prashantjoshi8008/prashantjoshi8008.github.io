@@ -1,0 +1,1647 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prashant Joshi | Financial Advisor & Audit Expert</title>
+    <link rel="icon" type="image/png" href="icons8-favicon-48.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap"
+        rel="stylesheet" />
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --navy: #0C1B33;
+            --navy2: #132240;
+            --gold: #BF9650;
+            --gold2: #D4AF6E;
+            --cream: #F5F0E8;
+            --offwhite: #FAF8F5;
+            --text: #1A2540;
+            --muted: #6B7A99;
+            --border: rgba(191, 150, 80, 0.25);
+            --transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Jost', sans-serif;
+            background: var(--offwhite);
+            color: var(--text);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ── CUSTOM SELECTION & SCROLLBAR ── */
+        ::selection {
+            background: var(--gold);
+            color: var(--navy);
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--navy);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border: 2px solid var(--navy);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--gold2);
+        }
+
+        /* ── NAV ── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 6vw;
+            height: 72px;
+            background: var(--navy);
+            border-bottom: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .nav-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: var(--cream);
+            letter-spacing: 0.04em;
+            text-decoration: none;
+            position: relative;
+            z-index: 1001;
+        }
+
+        .nav-logo span {
+            color: var(--gold);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(245, 240, 232, 0.75);
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: var(--transition);
+        }
+
+        /* Link hover underline effect */
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gold);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--gold);
+        }
+
+        .nav-cta {
+            background: var(--gold);
+            color: var(--navy) !important;
+            padding: 0.55rem 1.4rem !important;
+            border-radius: 3px;
+            font-weight: 600 !important;
+            box-shadow: 0 4px 15px rgba(191, 150, 80, 0.2);
+        }
+
+        .nav-cta::after {
+            display: none !important;
+        }
+
+        .nav-cta:hover {
+            background: var(--gold2) !important;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(191, 150, 80, 0.3);
+        }
+
+        /* Hamburger button */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            padding: 4px;
+            position: relative;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--cream);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+            background: var(--gold);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+            transform: translateX(-10px);
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+            background: var(--gold);
+        }
+
+        /* ── HERO ── */
+        .hero {
+            min-height: 100vh;
+            background: var(--navy);
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            align-items: center;
+            gap: 3rem;
+            padding: 92px 8vw 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 20% 40%, rgba(191, 150, 80, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        /* Decorative Grid */
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(191, 150, 80, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(191, 150, 80, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+        }
+
+        .hero-left {
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.9s 0.2s ease forwards;
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.72rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--gold);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-tag::before {
+            content: '';
+            display: block;
+            width: 32px;
+            height: 1px;
+            background: var(--gold);
+        }
+
+        .hero-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 5vw, 5.2rem);
+            font-weight: 700;
+            color: var(--cream);
+            line-height: 1.08;
+            margin-bottom: 0.8rem;
+        }
+
+        .hero-name em {
+            color: var(--gold);
+            font-style: italic;
+            font-weight: 300;
+        }
+
+        .hero-title {
+            font-size: 0.9rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 2rem;
+            font-weight: 500;
+            display: inline-block;
+            border-bottom: 1px solid rgba(191, 150, 80, 0.15);
+            padding-bottom: 0.4rem;
+        }
+
+        .hero-desc {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: rgba(245, 240, 232, 0.7);
+            max-width: 480px;
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--navy);
+            padding: 1rem 2.2rem;
+            font-family: 'Jost', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 3px;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(191, 150, 80, 0.2);
+            border: 1px solid transparent;
+        }
+
+        .btn-primary:hover {
+            background: var(--gold2);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(191, 150, 80, 0.3);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--border);
+            color: var(--cream);
+            padding: 1rem 2.2rem;
+            font-family: 'Jost', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 3px;
+            transition: var(--transition);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            background: rgba(191, 150, 80, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .hero-right {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: translateX(30px);
+            animation: fadeRight 0.9s 0.4s ease forwards;
+            width: 100%;
+        }
+
+        .hero-photo-wrap {
+            position: relative;
+            width: min(400px, 90%);
+        }
+
+        .hero-photo-wrap::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            right: 15px;
+            bottom: 15px;
+            border: 1px solid var(--gold);
+            opacity: 0.4;
+            border-radius: 4px;
+            z-index: 0;
+            transition: var(--transition);
+        }
+
+        .hero-photo-inner {
+            position: relative;
+            z-index: 1;
+            background: var(--navy2);
+            border: 1px solid rgba(191, 150, 80, 0.2);
+            border-radius: 4px;
+            overflow: hidden;
+            aspect-ratio: 4/5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-photo-inner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .hero-photo-wrap:hover .hero-photo-inner img {
+            transform: scale(1.05);
+        }
+
+        .hero-photo-wrap:hover::before {
+            transform: translate(5px, 5px);
+            opacity: 0.8;
+        }
+
+        .gold-line {
+            position: absolute;
+            bottom: -8px;
+            left: 20px;
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), transparent);
+            z-index: 2;
+        }
+
+        /* ── STATS STRIP ── */
+        .stats-strip {
+            background: var(--gold);
+            padding: 2.2rem 8vw;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .stat {
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .stat:hover {
+            transform: translateY(-2px);
+        }
+
+        .stat-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.72rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: rgba(12, 27, 51, 0.75);
+            font-weight: 600;
+            margin-top: 0.4rem;
+        }
+
+        .stat-divider {
+            width: 1px;
+            height: 40px;
+            background: rgba(12, 27, 51, 0.2);
+        }
+
+        /* ── SECTION COMMONS ── */
+        section {
+            padding: 7rem 8vw;
+        }
+
+        .section-tag {
+            font-size: 0.72rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--gold);
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .section-tag::before {
+            content: '';
+            width: 28px;
+            height: 1px;
+            background: var(--gold);
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title em {
+            color: var(--gold);
+            font-style: italic;
+            font-weight: 300;
+        }
+
+        /* ── ABOUT ── */
+        .about {
+            background: var(--cream);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .about-body {
+            font-size: 1rem;
+            line-height: 1.9;
+            color: #3D4D6B;
+            font-weight: 300;
+        }
+
+        .about-body p+p {
+            margin-top: 1.2rem;
+        }
+
+        .about-highlights {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .highlight-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.2rem;
+            padding: 1.5rem 1.8rem;
+            background: white;
+            border-left: 3px solid var(--gold);
+            border-radius: 0 4px 4px 0;
+            box-shadow: 0 4px 20px rgba(12, 27, 51, 0.02);
+            transition: var(--transition);
+        }
+
+        .highlight-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 8px 30px rgba(12, 27, 51, 0.06);
+            border-left-color: var(--gold2);
+        }
+
+        .hi-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            margin-top: 0.1rem;
+        }
+
+        .hi-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--navy);
+            letter-spacing: 0.04em;
+        }
+
+        .hi-sub {
+            font-size: 0.82rem;
+            color: var(--muted);
+            margin-top: 0.3rem;
+            line-height: 1.5;
+        }
+
+        /* ── SERVICES ── */
+        .services {
+            background: var(--offwhite);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.8rem;
+            margin-top: 3.5rem;
+        }
+
+        .service-card {
+            background: white;
+            border: 1px solid rgba(191, 150, 80, 0.12);
+            padding: 3rem 2.2rem;
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(12, 27, 51, 0.01);
+            transition: var(--transition);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--gold);
+            transition: width 0.4s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(12, 27, 51, 0.06);
+            border-color: rgba(191, 150, 80, 0.3);
+        }
+
+        .service-card:hover::before {
+            width: 100%;
+        }
+
+        .svc-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.2rem;
+            font-weight: 700;
+            color: rgba(191, 150, 80, 0.2);
+            line-height: 1;
+            margin-bottom: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .service-card:hover .svc-num {
+            color: var(--gold);
+            transform: scale(1.05);
+        }
+
+        .svc-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 0.8rem;
+            letter-spacing: 0.03em;
+        }
+
+        .svc-desc {
+            font-size: 0.9rem;
+            line-height: 1.75;
+            color: var(--muted);
+            font-weight: 300;
+        }
+
+        /* ── EXPERIENCE ── */
+        .experience {
+            background: var(--navy);
+            position: relative;
+        }
+
+        .experience::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 80% 20%, rgba(191, 150, 80, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .experience .section-title {
+            color: var(--cream);
+        }
+
+        .exp-intro {
+            font-size: 1rem;
+            color: rgba(245, 240, 232, 0.65);
+            line-height: 1.8;
+            max-width: 600px;
+            margin-bottom: 3.5rem;
+            font-weight: 300;
+        }
+
+        .exp-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .exp-item {
+            background: var(--navy);
+            padding: 2.5rem 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .exp-item:hover {
+            background: var(--navy2);
+        }
+
+        .exp-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 0;
+            background: var(--gold);
+            transition: height 0.3s ease;
+        }
+
+        .exp-item:hover::before {
+            height: 100%;
+        }
+
+        .exp-icon {
+            font-size: 2rem;
+            margin-bottom: 1.2rem;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .exp-item:hover .exp-icon {
+            transform: scale(1.1);
+        }
+
+        .exp-name {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--cream);
+            letter-spacing: 0.04em;
+            margin-bottom: 0.6rem;
+        }
+
+        .exp-desc {
+            font-size: 0.8rem;
+            color: rgba(245, 240, 232, 0.5);
+            line-height: 1.6;
+        }
+
+        /* ── WHY ── */
+        .why {
+            background: var(--cream);
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .why-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .why-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.2rem;
+            font-size: 0.95rem;
+            color: #3D4D6B;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        .why-check {
+            flex-shrink: 0;
+            width: 22px;
+            height: 22px;
+            background: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2px;
+            box-shadow: 0 4px 10px rgba(191, 150, 80, 0.2);
+        }
+
+        .why-check svg {
+            width: 11px;
+            stroke: var(--navy);
+            stroke-width: 3;
+            fill: none;
+        }
+
+        .why-visual {
+            background: var(--navy);
+            border-radius: 4px;
+            padding: 3.5rem 3rem;
+            color: var(--cream);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 15px 45px rgba(12, 27, 51, 0.15);
+            border: 1px solid rgba(191, 150, 80, 0.15);
+        }
+
+        .why-visual::before {
+            content: '';
+            position: absolute;
+            top: -40px;
+            right: -40px;
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(191, 150, 80, 0.15), transparent 70%);
+        }
+
+        .cert-heading {
+            font-size: 0.8rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 0.6rem;
+            font-weight: 600;
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+            margin-top: 2rem;
+        }
+
+        .cert-item {
+            background: rgba(191, 150, 80, 0.05);
+            border: 1px solid var(--border);
+            padding: 1.4rem 1rem;
+            border-radius: 4px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .cert-item:hover {
+            border-color: var(--gold);
+            background: rgba(191, 150, 80, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .cert-abbr {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        .cert-full {
+            font-size: 0.68rem;
+            letter-spacing: 0.08em;
+            color: rgba(245, 240, 232, 0.55);
+            margin-top: 0.4rem;
+            text-transform: uppercase;
+        }
+
+        /* ── CTA BANNER ── */
+        .cta-banner {
+            background: var(--gold);
+            padding: 5.5rem 8vw;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+            box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.03);
+        }
+
+        .cta-text .cta-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 3vw, 2.8rem);
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1.2;
+        }
+
+        .cta-text .cta-sub {
+            font-size: 0.98rem;
+            color: rgba(12, 27, 51, 0.8);
+            margin-top: 0.6rem;
+            font-weight: 400;
+        }
+
+        .btn-dark {
+            background: var(--navy);
+            color: var(--cream);
+            padding: 1.1rem 2.5rem;
+            font-family: 'Jost', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 3px;
+            white-space: nowrap;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(12, 27, 51, 0.2);
+            border: 1px solid transparent;
+        }
+
+        .btn-dark:hover {
+            background: var(--navy2);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(12, 27, 51, 0.3);
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            background: #080F1E;
+            padding: 4rem 8vw;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            border-top: 1px solid rgba(191, 150, 80, 0.1);
+        }
+
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--cream);
+            text-decoration: none;
+        }
+
+        .footer-logo span {
+            color: var(--gold);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2.2rem;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+
+        .footer-copy {
+            color: var(--muted);
+            font-size: 0.78rem;
+            font-weight: 300;
+        }
+
+        /* ── ANIMATIONS ── */
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeRight {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── RESPONSIVE MEDIA QUERIES ── */
+        @media (max-width: 1024px) {
+            .hero {
+                gap: 2rem;
+                padding-left: 6vw;
+                padding-right: 6vw;
+            }
+
+            .about-grid,
+            .why-grid {
+                gap: 3.5rem;
+            }
+        }
+
+        @media (max-width: 900px) {
+            nav {
+                padding: 0 6vw;
+            }
+
+            /* Mobile links menu slide down with blur */
+            .nav-links {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                position: fixed;
+                top: 72px;
+                left: 0;
+                width: 100%;
+                height: calc(100vh - 72px);
+                background: rgba(12, 27, 51, 0.98);
+                backdrop-filter: blur(15px);
+                -webkit-backdrop-filter: blur(15px);
+                padding: 3rem 2rem;
+                gap: 2.2rem;
+                border-top: 1px solid var(--border);
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, visibility 0.3s ease;
+                z-index: 999;
+                overflow-y: auto;
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .nav-links li {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-links.active li {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            /* Staggered display for mobile nav items */
+            .nav-links.active li:nth-child(1) {
+                transition-delay: 0.1s;
+            }
+
+            .nav-links.active li:nth-child(2) {
+                transition-delay: 0.15s;
+            }
+
+            .nav-links.active li:nth-child(3) {
+                transition-delay: 0.2s;
+            }
+
+            .nav-links.active li:nth-child(4) {
+                transition-delay: 0.25s;
+            }
+
+            .nav-links.active li:nth-child(5) {
+                transition-delay: 0.3s;
+            }
+
+            .nav-links a {
+                font-size: 1.15rem;
+                letter-spacing: 0.15em;
+                display: block;
+                padding: 0.6rem;
+            }
+
+            .nav-links a::after {
+                display: none;
+            }
+
+            .nav-links a.nav-cta {
+                display: inline-block;
+                width: auto;
+                padding: 0.8rem 2.5rem !important;
+                margin-top: 1rem;
+                font-size: 0.95rem;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            /* Hero vertical stacking */
+            .hero {
+                grid-template-columns: 1fr;
+                padding-top: 110px;
+                padding-bottom: 5rem;
+                text-align: center;
+                gap: 3.5rem;
+            }
+
+            .hero-left {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-tag {
+                justify-content: center;
+            }
+
+            .hero-desc {
+                max-width: 540px;
+            }
+
+            .hero-btns {
+                justify-content: center;
+            }
+
+            .hero-right {
+                order: -1;
+            }
+
+            .hero-photo-wrap {
+                width: min(350px, 85%);
+            }
+
+            /* Generic Grid Wrappers */
+            .about-grid,
+            .why-grid {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+            }
+
+            .about-highlights {
+                order: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 5rem 6vw;
+            }
+
+            /* Stats grid conversion */
+            .stats-strip {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 2.2rem 1.5rem;
+                padding: 3rem 6vw;
+            }
+
+            .stat-divider {
+                display: none;
+            }
+
+            .stat-num {
+                font-size: 2.3rem;
+            }
+
+            /* CTA Section adjustments */
+            .cta-banner {
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+                padding: 4.5rem 6vw;
+                gap: 2rem;
+            }
+
+            .cta-text {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn-dark {
+                width: 100%;
+                text-align: center;
+            }
+
+            /* Footer stack */
+            footer {
+                flex-direction: column;
+                text-align: center;
+                gap: 2.5rem;
+                padding: 4.5rem 6vw;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1.2rem;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-btns {
+                flex-direction: column;
+                width: 100%;
+                gap: 1rem;
+            }
+
+            .hero-btns a {
+                width: 100%;
+                text-align: center;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card {
+                padding: 2.5rem 1.5rem;
+            }
+
+            .why-visual {
+                padding: 2.5rem 1.5rem;
+            }
+
+            .cert-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .stats-strip {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <a class="nav-logo" href="index.html">Prashant <span>Joshi</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="contact.html" class="nav-cta">Contact</a></li>
+        </ul>
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-left">
+            <div class="hero-tag">Financial & Audit Expert</div>
+            <h1 class="hero-name">Prashant<br /><em>Joshi</em></h1>
+            <p class="hero-title"> IFRS Specialist · Tax Consultant · Auditor</p>
+            <p class="hero-desc">
+                Delivering precision-driven financial advisory, audit excellence, and strategic tax planning for
+                businesses across Nepal. From insurance and merchant banking to manufacturing and equity funds —
+                clarity, compliance, and growth.
+            </p>
+            <div class="hero-btns">
+                <a href="contact.html" class="btn-primary">Get in Touch</a>
+                <a href="#services" class="btn-outline">Explore Services</a>
+            </div>
+        </div>
+
+        <div class="hero-right">
+            <div class="hero-photo-wrap">
+                <div class="hero-photo-inner">
+                    <img src="profile.jpeg" alt="Prashant Joshi" />
+                </div>
+                <div class="gold-line"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <div class="stats-strip">
+        <!-- <div class="stat">
+            <div class="stat-num">8+</div>
+            <div class="stat-label">Years Experience</div>
+        </div> -->
+        <!-- <div class="stat-divider"></div> -->
+        <div class="stat">
+            <div class="stat-num">50+</div>
+            <div class="stat-label">Clients Served</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+            <div class="stat-num">6</div>
+            <div class="stat-label">Industry Sectors</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+            <div class="stat-num">100%</div>
+            <div class="stat-label">Compliance Rate</div>
+        </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+        <div class="about-grid">
+            <div class="reveal">
+                <div class="section-tag">About Me</div>
+                <h2 class="section-title">Trusted Financial<br /><em>Expertise</em></h2>
+                <div class="about-body">
+                    <p>
+                        I am Prashant Joshi, a seasoned financial professional with deep expertise in audit, IFRS
+                        reporting, taxation, and bookkeeping. With years of hands-on experience at <strong>ABS and
+                            Associates</strong>, a respected audit firm in Nepal, I have built a reputation for
+                        technical rigor and client-focused service.
+                    </p>
+                    <p>
+                        My work spans a diverse range of industries — from insurance companies and merchant banks to
+                        manufacturing enterprises, equity funds, and beyond. This breadth of exposure allows me to bring
+                        nuanced, sector-specific insight to every engagement.
+                    </p>
+                    <p>
+                        Whether you are navigating complex compliance requirements, transitioning to IFRS, managing tax
+                        obligations, or seeking clarity in your financial records, I am here to deliver structured,
+                        accurate, and actionable solutions.
+                    </p>
+                </div>
+            </div>
+            <div class="about-highlights reveal" style="transition-delay:0.15s">
+                <div class="highlight-item">
+                    <div class="hi-icon">
+                        <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round"
+                            style="width: 24px; height: 24px; display: block;">
+                            <path d="M2 22h20M4 22V10h16v12M2 10l10-8 10 8M6 14v4M10 14v4M14 14v4M18 14v4" />
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="hi-title">ABS and Associates</div>
+                        <div class="hi-sub">Ample experience in statutory & internal audit across diverse sectors</div>
+                    </div>
+                </div>
+                <div class="highlight-item">
+                    <div class="hi-icon">
+                        <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round"
+                            style="width: 24px; height: 24px; display: block;">
+                            <line x1="18" y1="20" x2="18" y2="10" />
+                            <line x1="12" y1="20" x2="12" y2="4" />
+                            <line x1="6" y1="20" x2="6" y2="14" />
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="hi-title">IFRS Implementation</div>
+                        <div class="hi-sub">Full-cycle IFRS adoption, reporting, and transition advisory</div>
+                    </div>
+                </div>
+                <div class="highlight-item">
+                    <div class="hi-icon">
+                        <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round"
+                            style="width: 24px; height: 24px; display: block;">
+                            <path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1-2-1z" />
+                            <path d="M16 8H8M16 12H8M14 16H8" />
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="hi-title">Tax & Compliance</div>
+                        <div class="hi-sub">Corporate and personal tax planning, filing, and regulatory compliance</div>
+                    </div>
+                </div>
+                <div class="highlight-item">
+                    <div class="hi-icon">
+                        <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round"
+                            style="width: 24px; height: 24px; display: block;">
+                            <path
+                                d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5A2.5 2.5 0 0 0 6.5 22H20M4 19.5V3.5A2.5 2.5 0 0 1 6.5 1H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="hi-title">Bookkeeping & Reporting</div>
+                        <div class="hi-sub">Clean, accurate financial records and management reporting</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="services" id="services">
+        <div style="text-align:center; max-width:580px; margin:0 auto 1rem;" class="reveal">
+            <div class="section-tag" style="justify-content:center">What I Offer</div>
+            <h2 class="section-title">Core Services</h2>
+            <p style="font-size:0.95rem;color:var(--muted);line-height:1.8;font-weight:300;">Comprehensive financial
+                services tailored to Nepal's regulatory landscape and international best practices.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card reveal">
+                <div class="svc-num">01</div>
+                <div class="svc-title">Audit & Assurance</div>
+                <p class="svc-desc">Statutory, internal, and concurrent audits conducted with meticulous attention to
+                    standards. Experience across insurance, banking, manufacturing, and fund sectors.</p>
+            </div>
+            <div class="service-card reveal" style="transition-delay:0.1s">
+                <div class="svc-num">02</div>
+                <div class="svc-title">IFRS Advisory</div>
+                <p class="svc-desc">End-to-end support for International Financial Reporting Standards — from first-time
+                    adoption and gap analysis to full implementation and ongoing compliance.</p>
+            </div>
+            <div class="service-card reveal" style="transition-delay:0.2s">
+                <div class="svc-num">03</div>
+                <div class="svc-title">Tax Planning & Compliance</div>
+                <p class="svc-desc">Strategic tax planning, timely return filing, and regulatory compliance for
+                    businesses and individuals. Minimise liabilities while staying fully compliant.</p>
+            </div>
+            <div class="service-card reveal" style="transition-delay:0.3s">
+                <div class="svc-num">04</div>
+                <div class="svc-title">Financial Advisory</div>
+                <p class="svc-desc">Informed financial guidance for business decisions — investment analysis, financial
+                    modelling, feasibility studies, and management consulting.</p>
+            </div>
+            <div class="service-card reveal" style="transition-delay:0.4s">
+                <div class="svc-num">05</div>
+                <div class="svc-title">Bookkeeping & Accounting</div>
+                <p class="svc-desc">Accurate, timely bookkeeping and accounting services that give you a clear,
+                    up-to-date picture of your financial health. Cloud and on-site options available.</p>
+            </div>
+            <div class="service-card reveal" style="transition-delay:0.5s">
+                <div class="svc-num">06</div>
+                <div class="svc-title">Regulatory Compliance</div>
+                <p class="svc-desc">Navigating Nepal's regulatory environment — SEBON, IRD, NRB, and company law
+                    requirements — ensuring your business remains compliant and penalty-free.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="experience" id="experience">
+        <div class="section-tag reveal">Industry Exposure</div>
+        <h2 class="section-title reveal">Sectors I've <em>Served</em></h2>
+        <p class="exp-intro reveal">Broad exposure across Nepal's financial and industrial landscape, enabling
+            sector-specific insights and best-practice benchmarking.</p>
+        <div class="exp-grid reveal">
+            <div class="exp-item">
+                <div class="exp-icon">
+                    <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round"
+                        style="width: 32px; height: 32px; display: block;">
+                        <rect x="3" y="10" width="18" height="12" rx="2" />
+                        <path d="M2 10L12 2l10 8M6 14v4M10 14v4M14 14v4M18 14v4" />
+                    </svg>
+                </div>
+                <div class="exp-name">Merchant Banking</div>
+                <div class="exp-desc">Audit, compliance, and financial reporting for merchant banking institutions</div>
+            </div>
+            <div class="exp-item">
+                <div class="exp-icon">
+                    <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round"
+                        style="width: 32px; height: 32px; display: block;">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    </svg>
+                </div>
+                <div class="exp-name">Insurance</div>
+                <div class="exp-desc">Statutory audit and IFRS advisory for life and non-life insurance companies</div>
+            </div>
+            <div class="exp-item">
+                <div class="exp-icon">
+                    <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round"
+                        style="width: 32px; height: 32px; display: block;">
+                        <path d="M2 20h20M20 18v-8l-4 4V10l-4 4V10l-4 4V6H4v12h16z" />
+                    </svg>
+                </div>
+                <div class="exp-name">Manufacturing</div>
+                <div class="exp-desc">Cost audit, financial review, and tax planning for manufacturing enterprises</div>
+            </div>
+            <div class="exp-item">
+                <div class="exp-icon">
+                    <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round"
+                        style="width: 32px; height: 32px; display: block;">
+                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+                        <polyline points="17 6 23 6 23 12" />
+                    </svg>
+                </div>
+                <div class="exp-name">Equity Funds</div>
+                <div class="exp-desc">Fund accounting, NAV verification, and regulatory compliance for equity funds
+                </div>
+            </div>
+            <div class="exp-item">
+                <div class="exp-icon">
+                    <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round"
+                        style="width: 32px; height: 32px; display: block;">
+                        <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+                        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                    </svg>
+                </div>
+                <div class="exp-name">Corporates & SMEs</div>
+                <div class="exp-desc">End-to-end financial, tax, and audit services for businesses of all sizes</div>
+            </div>
+            <!-- <div class="exp-item">
+                <div class="exp-icon">
+                    <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 32px; height: 32px; display: block;">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="2" y1="12" x2="22" y2="12"/>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                    </svg>
+                </div>
+                <div class="exp-name">NGOs & Development</div>
+                <div class="exp-desc">Donor-compliant financial reporting and project fund management</div>
+            </div> -->
+        </div>
+    </section>
+
+    <!-- WHY -->
+    <section class="why">
+        <div class="why-grid">
+            <div class="reveal">
+                <div class="section-tag">Why Choose Me</div>
+                <h2 class="section-title">A Partner, Not<br />Just a <em>Consultant</em></h2>
+                <ul class="why-list">
+                    <li>
+                        <span class="why-check"><svg viewBox="0 0 12 12">
+                                <polyline points="2,6 5,9 10,3" />
+                            </svg></span>
+                        <span>Deep multi-sector audit experience from ABS and Associates, one of Nepal's trusted audit
+                            firms</span>
+                    </li>
+                    <li>
+                        <span class="why-check"><svg viewBox="0 0 12 12">
+                                <polyline points="2,6 5,9 10,3" />
+                            </svg></span>
+                        <span>Up-to-date knowledge of Nepal's tax laws, SEBON, NRB regulations, and IFRS
+                            standards</span>
+                    </li>
+                    <li>
+                        <span class="why-check"><svg viewBox="0 0 12 12">
+                                <polyline points="2,6 5,9 10,3" />
+                            </svg></span>
+                        <span>Personalised attention to every client — no cookie-cutter approaches, just tailored
+                            solutions</span>
+                    </li>
+                    <li>
+                        <span class="why-check"><svg viewBox="0 0 12 12">
+                                <polyline points="2,6 5,9 10,3" />
+                            </svg></span>
+                        <span>Transparent, timely communication throughout every engagement</span>
+                    </li>
+                    <li>
+                        <span class="why-check"><svg viewBox="0 0 12 12">
+                                <polyline points="2,6 5,9 10,3" />
+                            </svg></span>
+                        <span>Proven track record of helping clients navigate regulatory challenges with
+                            confidence</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="why-visual reveal" style="transition-delay:0.15s">
+                <p class="cert-heading">Expertise & Credentials</p>
+                <p
+                    style="font-size:0.85rem;color:rgba(245,240,232,0.55);line-height:1.7;font-weight:300;margin-bottom:1.5rem;">
+                    Qualified expertise spanning international standards and Nepal's regulatory framework.</p>
+                <div class="cert-grid">
+                    <!-- <div class="cert-item">
+                        <div class="cert-abbr">CA</div>
+                        <div class="cert-full">Chartered Accountant</div>
+                    </div> -->
+                    <div class="cert-item">
+                        <div class="cert-abbr">IFRS</div>
+                        <div class="cert-full">Intl. Financial Reporting</div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-abbr">TAX</div>
+                        <div class="cert-full">Tax Advisory</div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-abbr">ABS & Associates</div>
+                        <div class="cert-full">Audit Experience</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA BANNER -->
+    <div class="cta-banner">
+        <div class="cta-text">
+            <div class="cta-title">Ready to simplify your<br />finances?</div>
+            <div class="cta-sub">Let's discuss how I can add value to your business.</div>
+        </div>
+        <a href="contact.html" class="btn-dark">Book a Consultation</a>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <a class="footer-logo" href="index.html">Prashant <span>Joshi</span></a>
+        <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <p class="footer-copy">&copy; <span id="copy-year">2025</span> Prashant Joshi. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Scroll reveal
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('visible');
+                    observer.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.12 });
+        reveals.forEach(r => observer.observe(r));
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+
+            // Toggle scroll lock on the body
+            if (navLinks.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Close menu on nav item click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                const hamburger = document.querySelector('.hamburger');
+                const navLinks = document.querySelector('.nav-links');
+
+                if (navLinks.classList.contains('active')) {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+
+        // Dynamic copyright year
+        document.getElementById('copy-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+
+</html>
